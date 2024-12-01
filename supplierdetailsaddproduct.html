@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Supplier Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .all-text {
+            margin-bottom: 15px;
+        }
+        .all-text label {
+            display: block;
+            font-weight: bold;
+            color: #555;
+        }
+        .all-text input, .all-text textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .all-text textarea {
+            height: 100px;
+        }
+        .all-text button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .all-text button:hover {
+            background-color: #45a049;
+        }
+        .product-group {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .product-group input {
+            width: 30%;
+            margin-right: 10px;
+        }
+        .add-product-btn {
+            background-color: #ffa500;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .add-product-btn:hover {
+            background-color: #e68a00;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Supplier Details for Pet Care Products</h1>
+
+        <form action="#" method="POST" id="supplierForm">
+            <div class="all-text">
+                <label for="supplier-name">Supplier Name</label>
+                <input type="text" id="supplier-name" name="supplier-name" required>
+            </div>
+
+            <div class="all-text">
+                <label for="supplier-email">Supplier Email</label>
+                <input type="email" id="supplier-email" name="supplier-email" required>
+            </div>
+
+            <div class="all-text">
+                <label for="supplier-number">Supplier Number</label>
+                <input type="tel" id="supplier-number" name="supplier-number" required>
+            </div>
+
+            <div class="all-text">
+                <label for="supplier-address">Supplier Address</label>
+                <textarea id="supplier-address" name="supplier-address" required></textarea>
+            </div>
+
+            <div id="productSection">
+                <h3>Products Required for Pets</h3>
+                
+                <div class="product-group" id="product1">
+                    <div class="all-text">
+                        <label for="product-name-1">Product Name</label>
+                        <input type="text" id="product-name-1" name="product-name[]" required>
+                    </div>
+                    <div class="all-text">
+                        <label for="product-category-1">Product Category</label>
+                        <input type="text" id="product-category-1" name="product-category[]" required>
+                    </div>
+                    <div class="all-text">
+                        <label for="product-price-1">Product Price</label>
+                        <input type="number" id="product-price-1" name="product-price[]" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="all-text">
+                <button type="button" class="add-product-btn" onclick="addProduct()">Add Product</button>
+            </div>
+
+            <div class="all-text">
+                <button type="submit">Submit Supplier Details</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        let productCount = 1;
+
+        function addProduct() {
+            productCount++;
+            
+            const productSection = document.getElementById('productSection');
+            const newProductGroup = document.createElement('div');
+            newProductGroup.classList.add('product-group');
+            newProductGroup.setAttribute('id', 'product' + productCount);
+            
+            newProductGroup.innerHTML = `
+                <div class="all-text">
+                    <label for="product-name-${productCount}">Product Name</label>
+                    <input type="text" id="product-name-${productCount}" name="product-name[]" required>
+                </div>
+                <div class="all-text">
+                    <label for="product-category-${productCount}">Product Category</label>
+                    <input type="text" id="product-category-${productCount}" name="product-category[]" required>
+                </div>
+                <div class="all-text">
+                    <label for="product-price-${productCount}">Product Price</label>
+                    <input type="number" id="product-price-${productCount}" name="product-price[]" required>
+                </div>
+            `;
+            
+            productSection.appendChild(newProductGroup);
+        }
+    </script>
+
+</body>
+</html>

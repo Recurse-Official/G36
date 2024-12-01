@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Doctor Login and Signup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .container {
+            width: 60%;
+            margin: 20px auto;
+        }
+        .all-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .all-container h2 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        .all-text {
+            margin-bottom: 15px;
+        }
+        .all-text label {
+            display: block;
+            font-weight: bold;
+        }
+        .all-text input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .all-text button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .all-text button:hover {
+            background-color: #45a049;
+        }
+        .all-text.error {
+            color: red;
+            font-size: 0.9em;
+        }
+        .all-text a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        .all-text a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Doctor Login & Signup</h1>
+</header>
+
+<div class="container">
+    <div class="all-container" id="loginFormContainer">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <div class="all-text">
+                <label for="loginUsername">Username</label>
+                <input type="text" id="loginUsername" name="loginUsername" required placeholder="Enter your username">
+                <span class="error" id="loginUsernameError"></span>
+            </div>
+            <div class="all-text">
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" name="loginPassword" required placeholder="Enter your password">
+                <span class="error" id="loginPasswordError"></span>
+            </div>
+            <div class="all-text">
+                <button onclick="window.location.href='Appointment_list.html';" type="submit">Login</button>
+            </div>
+            <div class="all-text">
+                <p>Don't have an account? <a href="#" id="showSignupForm">Sign up here</a></p>
+            </div>
+        </form>
+    </div>
+
+    <div class="all-container" id="signupFormContainer" style="display: none;">
+        <h2>Signup</h2>
+        <form id="signupForm">
+            <div class="all-text">
+                <label for="signupEmail">Email</label>
+                <input type="email" id="signupEmail" name="signupEmail" required placeholder="Enter your email">
+                <span class="error" id="signupEmailError"></span>
+            </div>
+            <div class="all-text">
+                <label for="signupUsername">Username</label>
+                <input type="text" id="signupUsername" name="signupUsername" required placeholder="Choose a username">
+                <span class="error" id="signupUsernameError"></span>
+            </div>
+            <div class="all-text">
+                <label for="signupPassword">Password</label>
+                <input type="password" id="signupPassword" name="signupPassword" required placeholder="Enter your password">
+                <span class="error" id="signupPasswordError"></span>
+            </div>
+            <div class="all-text">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm your password">
+                <span class="error" id="confirmPasswordError"></span>
+            </div>
+            <div class="all-text">
+                <button onclick="window.location.href='docinfo.html';" type="submit">Signup</button>
+            </div>
+            <div class="all-text">
+                <p>Already have an account? <a href="#" id="showLoginForm">Login here</a></p>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.getElementById('showSignupForm').addEventListener('click', function(event) {
+        event.preventDefault();
+        document.getElementById('loginFormContainer').style.display = 'none';
+        document.getElementById('signupFormContainer').style.display = 'block';
+    });
+
+    document.getElementById('showLoginForm').addEventListener('click', function(event) {
+        event.preventDefault();
+        document.getElementById('signupFormContainer').style.display = 'none';
+        document.getElementById('loginFormContainer').style.display = 'block';
+    });
+
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        let loginValid = true;
+        
+        document.getElementById('loginUsernameError').textContent = '';
+        document.getElementById('loginPasswordError').textContent = '';
+
+        if (!document.getElementById('loginUsername').value.trim()) {
+            document.getElementById('loginUsernameError').textContent = "Username is required.";
+            loginValid = false;
+        }
+
+        if (!document.getElementById('loginPassword').value.trim()) {
+            document.getElementById('loginPasswordError').textContent = "Password is required.";
+            loginValid = false;
+        }
+
+        if (loginValid) {
+            alert("Login successful!");
+        }
+    });
+
+    document.getElementById('signupForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        let signupValid = true;
+
+        document.getElementById('signupEmailError').textContent = '';
+        document.getElementById('signupUsernameError').textContent = '';
+        document.getElementById('signupPasswordError').textContent = '';
+        document.getElementById('confirmPasswordError').textContent = '';
+
+        if (!document.getElementById('signupEmail').value.trim()) {
+            document.getElementById('signupEmailError').textContent = "Email is required.";
+            signupValid = false;
+        }
+
+        if (!document.getElementById('signupUsername').value.trim()) {
+            document.getElementById('signupUsernameError').textContent = "Username is required.";
+            signupValid = false;
+        }
+
+        if (!document.getElementById('signupPassword').value.trim()) {
+            document.getElementById('signupPasswordError').textContent = "Password is required.";
+            signupValid = false;
+        }
+
+        if (document.getElementById('signupPassword').value !== document.getElementById('confirmPassword').value) {
+            document.getElementById('confirmPasswordError').textContent = "Passwords do not match.";
+            signupValid = false;
+        }
+
+        if (signupValid) {
+            alert("Signup successful!");
+        }
+    });
+</script>
+
+</body>
+</html>
